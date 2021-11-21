@@ -26,7 +26,7 @@ public class AuthenticationFilter implements Filter {
         
         if(email == null) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendRedirect("notes");
+            httpResponse.sendRedirect("login");
             return;
         }
        

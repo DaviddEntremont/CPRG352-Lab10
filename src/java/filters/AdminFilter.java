@@ -43,7 +43,7 @@ public class AdminFilter implements Filter {
         
         if(!role.getRoleName().equals("system admin")) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendRedirect("login");
+            httpResponse.sendRedirect("notes");
             return;
         }
        
