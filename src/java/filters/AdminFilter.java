@@ -18,6 +18,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Role;
 import models.User;
 import services.AccountService;
 
@@ -35,20 +36,17 @@ public class AdminFilter implements Filter {
         AccountService as = new AccountService();
         
         String email = (String) session.getAttribute("email");
-        String email = (String) session.getAttribute("email");
+        String password = (String) session.getAttribute("password");
         
         User user = as.login(email, password);
+        Role role = user.getRole();
         
-        
-        
-        
-        if(email == null) {
+        if(!role.getRoleName().equals("system admin")) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.sendRedirect("login");
             return;
         }
        
-        
         chain.doFilter(request, response);
     }
     
