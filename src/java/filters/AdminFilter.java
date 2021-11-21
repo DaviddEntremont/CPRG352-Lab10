@@ -18,6 +18,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.User;
+import services.AccountService;
 
 /**
  *
@@ -30,8 +32,15 @@ public class AdminFilter implements Filter {
      
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession();
+        AccountService as = new AccountService();
         
         String email = (String) session.getAttribute("email");
+        String email = (String) session.getAttribute("email");
+        
+        User user = as.login(email, password);
+        
+        
+        
         
         if(email == null) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
